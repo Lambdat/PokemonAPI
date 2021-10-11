@@ -22,7 +22,9 @@ namespace PokemonAPI.Data
 
         public void Aggiungi(Pokemon t)
         {
-            throw new NotImplementedException();
+            _db.Update("insert into pokemon(nome,peso,generazione) values " +
+                $"('{t.Nome}',{t.Peso},{t.Generazione})");
+
         }
 
         public Pokemon Cerca(int id)

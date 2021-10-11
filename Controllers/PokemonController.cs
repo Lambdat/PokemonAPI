@@ -27,5 +27,13 @@ namespace PokemonAPI.Controllers
             return _idao.Elenco();
         }
 
+        [HttpPost]
+        public IActionResult Aggiungi([FromBody]Pokemon p)
+        {
+            _idao.Aggiungi(p);
+
+            return Ok();
+        }
+
     }
 }

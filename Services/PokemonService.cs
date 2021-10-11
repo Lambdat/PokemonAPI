@@ -11,7 +11,7 @@ namespace PokemonAPI.Services
     {
         private readonly DAOPokemon _pokemon;
 
-        public PokemonService(DAOPokemon _pokemon)
+        public PokemonService(DAOPokemon _pokemon) //In StartUp.cs abbiamo bassato l'istanza singleton attraverso pattern Dependency Injection
         {
             this._pokemon = _pokemon;
         }
@@ -20,7 +20,7 @@ namespace PokemonAPI.Services
 
         public void Aggiungi(Pokemon t)
         {
-            throw new NotImplementedException();
+            _pokemon.Aggiungi(t);
         }
 
         public Pokemon Cerca(int id)
