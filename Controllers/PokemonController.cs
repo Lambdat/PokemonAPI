@@ -27,10 +27,24 @@ namespace PokemonAPI.Controllers
             return _idao.Elenco();
         }
 
+        [HttpGet("{id}")]
+        public Pokemon Cerca([FromRoute]int id)
+        {
+            return _idao.Cerca(id);
+        }
+
         [HttpPost]
         public IActionResult Aggiungi([FromBody]Pokemon p)
         {
             _idao.Aggiungi(p);
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Elimina([FromRoute]int id)
+        {
+            _idao.Elimina(id);
 
             return Ok();
         }

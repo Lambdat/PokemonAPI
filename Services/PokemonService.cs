@@ -25,7 +25,7 @@ namespace PokemonAPI.Services
 
         public Pokemon Cerca(int id)
         {
-            throw new NotImplementedException();
+            return _pokemon.Cerca(id);
         }
 
         public List<Pokemon> Elenco()
@@ -35,7 +35,7 @@ namespace PokemonAPI.Services
 
         public void Elimina(int id)
         {
-            throw new NotImplementedException();
+            _pokemon.Elimina(id);
         }
 
         public void Modifica(Pokemon t)
