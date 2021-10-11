@@ -34,15 +34,7 @@ namespace PokemonAPI.Data
         {
             List<Pokemon> ris = new List<Pokemon>();
 
-            List<Dictionary<string, string>> righe = _db.Read(
-                                                                 "select pokemon.id,pokemon.nome,pokemon.peso,pokemon.generazione,tipi.id as tipoId,tipi.nome as tipoPokemon,mosse.id as mossaid," +
-                                                                 "mosse.nome as Mossa,mosse.tipo as tipoMossa,mosse.potenza,mosse.effettispeciali " +
-                                                                 " from pokemon " +
-                                                                 " inner join tipipokemon on pokemon.id = tipipokemon.pokemonid" +
-                                                                 " inner join tipi on tipipokemon.tipoid = tipi.id " +
-                                                                 " inner join mossepokemon on pokemon.id = mossepokemon.pokemonid " +
-                                                                 " inner join mosse on mossepokemon.mossaid = mosse.id; "
-                                                                 );
+            List<Dictionary<string, string>> righe = _db.Read("select * from pokemon");
 
             foreach(var riga in righe)
             {
@@ -52,37 +44,49 @@ namespace PokemonAPI.Data
                 //Per le liste di oggetti troviamo il valore della ["chiave"] e da li inizializziamo l'apposita lista
                 //inizializziamo l'oggetto della lista corrispondente e valorizziamo le sue proprietà
 
-                int tipoId = int.Parse(riga["tipoid"]);
-                string tipoPokemon = riga["tipopokemon"]; 
+                //Carichiamo la lista di Tipi dell'oggetto
+                p.Tipi = new List<Tipo>();
 
-                p.Tipi = new List<Tipo>()
+      
+
+                List<Dictionary<string, string>> righeTipi = _db.Read("select tipi.id as tipoid,tipi.nome as tiponome " +
+                                                     " from tipipokemon inner join tipi on tipipokemon.tipoid = tipi.id " +
+                                                     $" where pokemonid={riga["id"]} "
+                                                                    );
+                foreach(var rigaTipo in righeTipi)
                 {
-                    new Tipo()
-                    {
-                        Id=tipoId,
-                        Nome=tipoPokemon
-                    }
-                };
+                    p.Tipi.Add(
+                            new Tipo()
+                            {
+                                Id = int.Parse(rigaTipo["tipoid"]),
+                                Nome = rigaTipo["tiponome"]
 
-                int mossaId = int.Parse(riga["mossaid"]);
-                string nome = riga["mossa"]; 
-                string tipo = riga["tipomossa"];
-                int potenza =int.Parse(riga["potenza"]);
-                string effettiSpeciali = riga["effettispeciali"];
+                            });
+                }
 
-                p.Mosse = new List<Mossa>()
+
+                //Carichiamo la lista di Mosse dell'oggetto
+                p.Mosse = new List<Mossa>();
+
+                List<Dictionary<string, string>> righeMosse = _db.Read("select * " +
+                                                                    "from mossepokemon inner join mosse on mossepokemon.mossaid = mosse.id " +
+                                                                    $"where pokemonid={riga["id"]} "
+                                                                    );
+
+                foreach(var rigaMossa in righeMosse)
                 {
-                    new Mossa()
-                    {
-                        Id=mossaId,
-                        Nome=nome,
-                        Tipo=tipo,
-                        Potenza=potenza,
-                        EffettiSpeciali=effettiSpeciali
-                    }
+                    p.Mosse.Add(
+                        new Mossa()
+                        {
+                            Id=int.Parse(rigaMossa["mossaid"]),
+                            Nome=rigaMossa["nome"],
+                            Tipo=rigaMossa["tipo"],
+                            Potenza=int.Parse(rigaMossa["potenza"]),
+                            EffettiSpeciali=rigaMossa["effettispeciali"]
+                        });
+                }
 
-
-                };
+               
 
 
                 ris.Add(p);
