@@ -1,4 +1,5 @@
-﻿using PokemonAPI.Models;
+﻿using Microsoft.Extensions.Configuration;
+using PokemonAPI.Models;
 using PokemonAPI.Services;
 using System.Collections.Generic;
 using Utility;
@@ -10,9 +11,11 @@ namespace PokemonAPI.Data
 
         private Database _db;
 
-        public DAOPokemon()
+        public DAOPokemon(IConfiguration config)
         {
-            _db = new Database("pokemon");
+           string nomeDatabase = config.GetValue<string>(key: "NomeDatabase");
+
+            _db = new Database(nomeDatabase);
         }
 
 
