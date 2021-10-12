@@ -47,14 +47,18 @@ namespace PokemonAPI.Data
 
             List<Dictionary<string, string>> righe = _db.Read("select * from tipi");
 
-            foreach(var riga in righe)
+
+            //Usiamo Linq sulle nostre liste di Dictionary<string,string>
+
+            return righe.Select(riga =>
             {
+
                 Tipo t = new Tipo();
                 t.FromDictionary(riga);
-                ris.Add(t);
-            }
+                return t;
 
-            return ris;
+            }).ToList();
+        
         }
 
         public void Elimina(int id)
