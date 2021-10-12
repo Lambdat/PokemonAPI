@@ -50,5 +50,13 @@ namespace PokemonAPI.Controllers
             return Ok();
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Modifica([FromRoute] int id,[FromBody] Tipo t)
+        {
+            _idao.Modifica(id,t);
+
+            return Ok();
+        }
+
     }
 }

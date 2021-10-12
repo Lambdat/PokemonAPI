@@ -51,9 +51,9 @@ namespace PokemonAPI.Controllers
 
         //TODO : Finire la modifica per i pokemon
         [HttpPut]
-        public IActionResult Modifica([FromBody]Pokemon t)
+        public IActionResult Modifica([FromRoute] int id,[FromBody]Pokemon p)
         {
-            _idao.Modifica(t);
+            _idao.Modifica(id,p);
 
             return Ok();
         }

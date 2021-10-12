@@ -36,9 +36,9 @@ namespace PokemonAPI.Services
             _tipi.Elimina(id);
         }
 
-        public void Modifica(Tipo t)
+        public void Modifica(int id,Tipo p)
         {
-            throw new NotImplementedException();
+            _tipi.Modifica(id,p);
         }
     }
 }

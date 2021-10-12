@@ -13,7 +13,7 @@ namespace PokemonAPI.Services
 
         public void Aggiungi(T t);
 
-        public void Modifica(T t);
+        public void Modifica(int id,T t);
 
         public void Elimina(int id);
 

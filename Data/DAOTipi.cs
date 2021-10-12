@@ -62,9 +62,9 @@ namespace PokemonAPI.Data
             _db.Update("delete from tipi where id=" + id);
         }
 
-        public void Modifica(Tipo t)
+        public void Modifica(int id,Tipo t)
         {
-            throw new NotImplementedException();
+            _db.Update($"update tipi set nome='{t.Nome}' where id={id}");
         }
     }
 }

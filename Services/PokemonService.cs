@@ -38,9 +38,9 @@ namespace PokemonAPI.Services
             _pokemon.Elimina(id);
         }
 
-        public void Modifica(Pokemon t)
+        public void Modifica(int id,Pokemon p)
         {
-            _pokemon.Modifica(t);
+            _pokemon.Modifica(id,p);
         }
     }
 }

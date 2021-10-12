@@ -156,7 +156,7 @@ namespace PokemonAPI.Data
 
 
         //TODO : Finire la modifica per i pokemon
-        public void Modifica(Pokemon p)
+        public void Modifica(int id,Pokemon p)
         {
             _db.Update($"update pokemon set nome='{p.Nome}',peso={p.Peso},generazione={p.Generazione}" +
                 $" where id={p.Id}");

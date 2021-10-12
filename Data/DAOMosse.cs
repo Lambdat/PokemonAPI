@@ -49,7 +49,7 @@ namespace PokemonAPI.Data
             throw new NotImplementedException();
         }
 
-        public void Modifica(Mossa t)
+        public void Modifica(int id,Mossa t)
         {
             throw new NotImplementedException();
         }
