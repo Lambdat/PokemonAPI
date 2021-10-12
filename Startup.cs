@@ -34,7 +34,12 @@ namespace PokemonAPI
 
             services.AddSingleton<DAOPokemon>();
 
+            //Prima interfaccia<classe> poi il service
             services.AddSingleton<IDAO<Pokemon>,PokemonService>();
+
+            services.AddSingleton<DAOTipi>();
+
+            services.AddSingleton<IDAO<Tipo>,TipiService>();
 
 
             services.AddSwaggerGen(c =>

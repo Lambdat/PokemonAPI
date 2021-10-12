@@ -40,7 +40,7 @@ namespace PokemonAPI.Services
 
         public void Modifica(Pokemon t)
         {
-            throw new NotImplementedException();
+            _pokemon.Modifica(t);
         }
     }
 }

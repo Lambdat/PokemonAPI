@@ -1,6 +1,5 @@
 ﻿using PokemonAPI.Models;
 using PokemonAPI.Services;
-using System;
 using System.Collections.Generic;
 using Utility;
 
@@ -52,7 +51,7 @@ namespace PokemonAPI.Data
 
 
             //Creaiamo e carichiamo la lista dei pokemon del pokemon trovato
-            
+
             ris.Mosse = new List<Mossa>();
 
 
@@ -60,18 +59,18 @@ namespace PokemonAPI.Data
                 "from mossepokemon inner join mosse on mossepokemon.mossaid=mosse.id " +
                 $"where pokemonid={ris.Id}");
 
-            foreach(var rigaMossa in righeMosse)
+            foreach (var rigaMossa in righeMosse)
             {
                 ris.Mosse.Add(new Mossa()
                 {
-                    Id=int.Parse(rigaMossa["id"]),
-                    Nome=rigaMossa["nome"],
-                    Tipo=rigaMossa["tipo"],
-                    Potenza=int.Parse(rigaMossa["potenza"]),
-                    EffettiSpeciali=rigaMossa["effettispeciali"]
+                    Id = int.Parse(rigaMossa["id"]),
+                    Nome = rigaMossa["nome"],
+                    Tipo = rigaMossa["tipo"],
+                    Potenza = int.Parse(rigaMossa["potenza"]),
+                    EffettiSpeciali = rigaMossa["effettispeciali"]
                 });
             }
-            
+
 
             return ris;
         }
@@ -144,13 +143,29 @@ namespace PokemonAPI.Data
 
         public void Elimina(int id)
         {
-            _db.Update("delete from pokemon where id="+id);
+            _db.Update("delete from pokemon where id=" + id);
 
         }
 
-        public void Modifica(Pokemon t)
+
+        //TODO : Finire la modifica per i pokemon
+        public void Modifica(Pokemon p)
         {
-            throw new NotImplementedException();
+            _db.Update($"update pokemon set nome='{p.Nome}',peso={p.Peso},generazione={p.Generazione}" +
+                $" where id={p.Id}");
+
+
+        }
+
+
+        public void Modifica(Pokemon p,List<Tipo> t)
+        {
+            foreach(Tipo tipo in t)
+            {
+            _db.Update($"update tipipokemon set tipoId={tipo.Id} " +
+                $"where idpokemon={p.Id}");
+
+            }
         }
     }
 }

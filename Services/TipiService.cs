@@ -1,23 +1,20 @@
-﻿using System;
+﻿using PokemonAPI.Data;
+using PokemonAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PokemonAPI.Models;
-using PokemonAPI.Services;
-using Utility;
 
-namespace PokemonAPI.Data
+namespace PokemonAPI.Services
 {
-    public class DAOTipi : IDAO<Tipo>
+    public class TipiService : IDAO<Tipo>
     {
-        private Database _db;
+        private readonly DAOTipi _tipi;
 
-        public DAOTipi()
+        public TipiService(DAOTipi _tipi)
         {
-            _db = new Database("pokemon");
+            this._tipi = _tipi;
         }
-
-
 
         public void Aggiungi(Tipo t)
         {
@@ -31,18 +28,7 @@ namespace PokemonAPI.Data
 
         public List<Tipo> Elenco()
         {
-            List<Tipo> ris = new List<Tipo>();
-
-            List<Dictionary<string, string>> righe = _db.Read("select * from tipi");
-
-            foreach(var riga in righe)
-            {
-                Tipo t = new Tipo();
-                t.FromDictionary(riga);
-                ris.Add(t);
-            }
-
-            return ris;
+            return _tipi.Elenco();
         }
 
         public void Elimina(int id)
