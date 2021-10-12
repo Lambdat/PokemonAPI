@@ -33,7 +33,7 @@ namespace PokemonAPI.Services
 
         public void Elimina(int id)
         {
-            throw new NotImplementedException();
+            _tipi.Elimina(id);
         }
 
         public void Modifica(Tipo t)

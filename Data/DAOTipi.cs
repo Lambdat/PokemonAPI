@@ -23,8 +23,6 @@ namespace PokemonAPI.Data
         {
             _db.Update("insert into tipi(nome) values " +
                 $"('{t.Nome}')");
-
-
         }
 
         public Tipo Cerca(int id)
@@ -33,6 +31,11 @@ namespace PokemonAPI.Data
             
             Dictionary<string, string> riga = _db.ReadOne("select * from tipi where id=" + id);
 
+            if (riga is null)
+            {
+                return null;
+            }
+            
             ris.FromDictionary(riga);
 
             return ris;
@@ -56,7 +59,7 @@ namespace PokemonAPI.Data
 
         public void Elimina(int id)
         {
-            throw new NotImplementedException();
+            _db.Update("delete from tipi where id=" + id);
         }
 
         public void Modifica(Tipo t)

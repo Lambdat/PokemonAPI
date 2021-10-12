@@ -42,7 +42,13 @@ namespace PokemonAPI.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Elimina([FromRoute]int id)
+        {
+            _idao.Elimina(id);
 
+            return Ok();
+        }
 
     }
 }

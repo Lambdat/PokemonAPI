@@ -30,6 +30,13 @@ namespace PokemonAPI.Data
 
             Dictionary<string, string> riga = _db.ReadOne("select * from pokemon where id=" + id);
 
+
+            //Nel caso non esistesse alcun Dictionary (o riga) riferito alla tabella
+            if (riga is null)
+            {
+                return null;
+            }
+
             ris.FromDictionary(riga);
 
             //Creaiamo e carichiamo la lista dei tipi del pokemon trovato
