@@ -21,7 +21,10 @@ namespace PokemonAPI.Data
 
         public void Aggiungi(Tipo t)
         {
-            throw new NotImplementedException();
+            _db.Update("insert into tipi(nome) values " +
+                $"('{t.Nome}')");
+
+
         }
 
         public Tipo Cerca(int id)

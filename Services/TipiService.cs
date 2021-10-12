@@ -18,7 +18,7 @@ namespace PokemonAPI.Services
 
         public void Aggiungi(Tipo t)
         {
-            throw new NotImplementedException();
+            _tipi.Aggiungi(t);
         }
 
         public Tipo Cerca(int id)

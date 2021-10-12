@@ -34,6 +34,13 @@ namespace PokemonAPI.Controllers
             return _idao.Cerca(id);
         }
 
+        [HttpPost]
+        public IActionResult Aggiungi([FromBody]Tipo t)
+        {
+            _idao.Aggiungi(t);
+
+            return Ok();
+        }
 
 
 
