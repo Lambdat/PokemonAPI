@@ -28,7 +28,11 @@ namespace PokemonAPI.Controllers
             return _idao.Elenco();
         }
 
-
+        [HttpGet("{id}")]
+        public Tipo Cerca([FromRoute] int id)
+        {
+            return _idao.Cerca(id);
+        }
 
 
 

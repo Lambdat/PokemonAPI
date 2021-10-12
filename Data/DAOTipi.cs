@@ -26,7 +26,13 @@ namespace PokemonAPI.Data
 
         public Tipo Cerca(int id)
         {
-            throw new NotImplementedException();
+            Tipo ris = new Tipo();
+            
+            Dictionary<string, string> riga = _db.ReadOne("select * from tipi where id=" + id);
+
+            ris.FromDictionary(riga);
+
+            return ris;
         }
 
         public List<Tipo> Elenco()

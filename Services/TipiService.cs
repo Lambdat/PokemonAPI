@@ -23,7 +23,7 @@ namespace PokemonAPI.Services
 
         public Tipo Cerca(int id)
         {
-            throw new NotImplementedException();
+            return _tipi.Cerca(id);
         }
 
         public List<Tipo> Elenco()
